@@ -1,6 +1,5 @@
 #include <iostream>
-#include <cmath>
-
+#include "gmat.hpp"
 /**
  * I am using my genotype format here, suppose SNP alleles are coded as 0 & 1
  * part   I: nid nlc                 # in one line
@@ -14,11 +13,15 @@
 
 using namespace std;
 
-#include "gmat.cpp"
-
 int main(int argc, char *argv[])
 {
-  vr1g(cin, cout);		// strictly follows the instructions
+  vector<double> twop, gt;
+  double         s2pq;
+
+  __read_gt(cin, twop, s2pq, gt);
+
+  vr1g(twop, s2pq, gt, cout);
+  //yang(twop, s2pq, gt, cout);
   
   return 0;
 }

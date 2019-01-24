@@ -1,12 +1,10 @@
 CXXFLAGS = -O2 -Wall -std=c++17
-THREAD = ${CXXFLAGS} -pthread
 
-target=drv
+target=drv viewg
 
 all:    ${target}
 
-drv:	drv.cpp gmat.cpp
-	g++ ${CXXFLAGS} -o drv drv.cpp
+drv:	drv.cpp gmat.hpp gmat.cpp
 
 mv:
 	mkdir -p ../bin
