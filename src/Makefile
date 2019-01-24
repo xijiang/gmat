@@ -1,6 +1,6 @@
-CXXFLAGS = -O2 -Wall -std=c++17
+CXXFLAGS = -O2 -Wall -ffast-math
 
-target=drv viewg
+target=drv viewg gmtmrg
 
 all:    ${target}
 

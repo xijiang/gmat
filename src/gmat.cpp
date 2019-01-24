@@ -1,32 +1,6 @@
 #include "gmat.hpp"
 
 // VanRaden Journal of Dairy Science Vol. 91 No. 11, 2008
-
-void __read_gt(std::istream&in,
-	       std::vector<double>&twop,
-	       double&s2pq,
-	       std::vector<double>&gt){
-  int nid, nlc;
-  
-  in >> nid >> nlc;
-  
-  twop.resize(nlc);
-  double mul(1./nid);
-  for(auto&p:twop){
-    in >> p;
-    p  *= mul;
-    s2pq += p*(-.5*p + 1);
-  }
-
-  gt.resize(nlc*nid);
-  std::string line;
-  for(auto i{0}; i<nlc; ++i){
-    in >> line;
-    for(auto k{0}; k<nid; ++k) gt[nlc*k+i] = line[k] - '0' - twop[i];
-  }
-}
-
-
 void vr1g(std::vector<double>&twop,
 	  double&s2pq,
 	  std::vector<double>&gt,
@@ -48,6 +22,10 @@ void vr1g(std::vector<double>&twop,
       oo.write((char*)&sum, sizeof(double));
     }
   }
+}
+
+
+void seg_vr1g(){
 }
 
 

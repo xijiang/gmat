@@ -1,5 +1,6 @@
 #include <iostream>
 #include "gmat.hpp"
+
 /**
  * I am using my genotype format here, suppose SNP alleles are coded as 0 & 1
  * part   I: nid nlc                 # in one line
@@ -13,15 +14,35 @@
 
 using namespace std;
 
+void distribute(int&nth){
+  nth=1;			// dummy, number of threads, do later
+  int nid, nlc;
+  cin>>nid>>nlc;
+
+  vector<double> twop(nlc), geno(nlc*nid);
+  double         s2pq{0}, mul(1./nid);
+
+  for(auto&p:twop){
+    cin  >> p;
+    p    *= mul;
+    s2pq += p*(-.5*p + 1);
+  }
+
+  for(auto i=0; i<nlc; ++i){
+    string gt;
+    cin >> gt;
+    for(auto j=0; j<nid; ++j) geno[nlc*j+i] = gt[j] - '0' - twop[i];
+  }
+  vr1g(twop, s2pq, geno, cout);
+}
+
 int main(int argc, char *argv[])
 {
-  vector<double> twop, gt;
-  double         s2pq;
+  ios_base::sync_with_stdio(false);
+  
+  int nth{2};
 
-  __read_gt(cin, twop, s2pq, gt);
-
-  vr1g(twop, s2pq, gt, cout);
-  //yang(twop, s2pq, gt, cout);
+  distribute(nth);
   
   return 0;
 }
