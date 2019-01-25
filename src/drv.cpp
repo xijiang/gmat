@@ -16,7 +16,7 @@ using namespace std;
 
 void distribute(int&nth){
   nth=1;			// dummy, number of threads, do later
-  int nid, nlc;
+  size_t nid, nlc;		// sizeof(int) is only 4, size_t 8
   cin>>nid>>nlc;
 
   vector<double> twop(nlc), geno(nlc*nid);
@@ -28,10 +28,10 @@ void distribute(int&nth){
     s2pq += p*(-.5*p + 1);
   }
 
-  for(auto i=0; i<nlc; ++i){
+  for(size_t i=0; i<nlc; ++i){
     string gt;
     cin >> gt;
-    for(auto j=0; j<nid; ++j) geno[nlc*j+i] = gt[j] - '0' - twop[i];
+    for(size_t j=0; j<nid; ++j) geno[nlc*j+i] = gt[j] - '0' - twop[i];
   }
   vr1g(twop, s2pq, geno, cout);
 }
