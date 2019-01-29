@@ -6,7 +6,7 @@ using namespace std;
 int main(int argc, char *argv[])
 {
   ios_base::sync_with_stdio(false); // avoid significant overhead
-  int    i, j, nid, w{6}, p{2};
+  int    i, j, nid, w{6}, p{2}, nlc;
   double td;
 
   if(argc==2){
@@ -14,10 +14,12 @@ int main(int argc, char *argv[])
     w = 4+p;
   }
   
-  cin>>nid;
+  cin>>nid>>nlc;
   cin.ignore();
-  clog<<"Dimension: "<<nid<<'\n';
-  
+
+  clog<<"Dimension/nID:    "<<nid<<'\n';
+  clog<<"No. of loci used: "<<nlc<<'\n';
+
   cout.precision(p);
   cout<<fixed;
   for(i=0; i<nid; ++i){

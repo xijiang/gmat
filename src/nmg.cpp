@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   {				// calculate G
     size_t i, j, k;
 
-    cout<<nid<<'\n';
+    cout<<nid<<' '<<nlc<<'\n';
     for(i=0; i<nid; ++i)
       for(j=0; j<=i; ++j){
 	double sum{0}, td[nlc];

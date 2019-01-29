@@ -1,6 +1,15 @@
-# G matrix constructor
+# G matrix constructors
 
 This contains various G matrix constructors.
+
+## Usage:
+```bash
+git clone https://github.com/xijiang/gmat
+cd gmat/fnc
+./run.sh prepare                    # for first time usage
+./run.sh vr1g                       # VanRaden method 1
+./run.sh 
+```
 
 ## Working format
 ### Genotype file
@@ -12,7 +21,7 @@ individuals on each locus.
   * frequencies   # number of loci lines
   * genotypes     # number of loci lines
 
-Example:
+For example:
 
     5 2
     4
@@ -21,7 +30,7 @@ Example:
     12012
 
 ### G matrix format
-    nid                    # a number with a (Unix) new line character
+    nid nlc    # nID and nLoci used for this G, follows a (Unix) new line char
     binaries of the lower triangular of G  # n(n+1)/2 doubles, each of 8 bytes
 
 A function, _g2-3c_, is added to convert this into a 3-column format,
@@ -33,8 +42,8 @@ The missings can be imputed with Beagle 5, which results in VCF files.
 A function, _vcf2g_, is included to convert it to the working format.
 
 ## Realization of parallel calculation
-This is realized in two steps:
-  1. G calculator stores the genotype in locus-majored for SIMD
+This is realized in two stages:
+  1. G calculator stores the genotypes locus-majored for SIMD
   2. Using bash to parallelization, which is
      * Cheaper
      * Easier to understand
@@ -44,9 +53,11 @@ Also see the bash scripts to see how to use them.
 
 ## Note:
 
-In the driver, nid and nlc must be defined as size_t or long.
+In the driver, *nid* and *nlc* must be defined as size_t or long.
 An int is of size 4 bytes or maximally 2,147,483,648.
-current nid*nlc can easily be bigger than that.
+current *nid* x *nlc* can easily be bigger than that.
+
+All the programs were written in the "stupid" way for easier later modification.
 
 ## ToDo:
   * todo: vcf spliter

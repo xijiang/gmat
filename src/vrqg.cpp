@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     size_t i, j, k;
     double s2pq(2./nlc);
 
-    cout<<nid<<'\n';
+    cout<<nid<<' '<<nlc<<'\n';
     for(i=0; i<nid; ++i)
       for(j=0; j<=i; ++j){
 	double sum{0}, td[nlc];
