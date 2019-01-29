@@ -5,7 +5,7 @@ This contains various G matrix constructors.
 ## Working format
 ### Genotype file
 Suppose the genotypes are coded as 0, 1, 2 for genoteype 00, 01 and 11,
-then the frequencies in the file are the counts of allele `1' for all the
+then the frequencies in the file are the counts of allele '1' for all the
 individuals on each locus. 
 
   * nid nlc       # put in one line for clarity
@@ -22,7 +22,25 @@ Example:
 
 ### G matrix format
     nid                    # a number with a (Unix) new line character
-    binaries of the lower triangular of G  # $\frac{n(n+1)}{2}\times 8$ bytes
+    binaries of the lower triangular of G  # n(n+1)/2 doubles, each of 8 bytes
+
+A function, _g2-3c_, is added to convert this into a 3-column format,
+provides ID names in a separate file.
+
+### VCF format
+My program don't deal with missing alleles.
+The missings can be imputed with Beagle 5, which results in VCF files.
+A function, _vcf2g_, is included to convert it to the working format.
+
+## Realization of parallel calculation
+This is realized in two steps:
+  1. G calculator stores the genotype in locus-majored for SIMD
+  2. Using bash to parallelization, which is
+     * Cheaper
+     * Easier to understand
+
+A function, *splitg*, is added to split jobs.
+Also see the bash scripts to see how to use them.
 
 ## Note:
 
@@ -31,5 +49,5 @@ An int is of size 4 bytes or maximally 2,147,483,648.
 current nid*nlc can easily be bigger than that.
 
 ## ToDo:
-todo: vcf spliter
-todo: parallel with bash code
+  * todo: vcf spliter
+  * todo: parallel with bash code
