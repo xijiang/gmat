@@ -1,4 +1,5 @@
 #include <iostream>
+#include "gtp.hpp"
 
 using namespace std;
 
@@ -15,13 +16,12 @@ int main(int argc, char *argv[])
       topq[i]  = 1. / (twop[i]*(1-twop[i]*.5));
     }
   }
-
-  double gt[nid][nlc];{		// read genotypes
+  GTP gt(nid, nlc);{		// read genotypes
     string line;
     size_t i, k;
     for(k=0; k<nlc; ++k){
       cin>>line;
-      for(i=0; i<nid; ++i) gt[i][k] = line[i] - '0' - twop[k];
+      for(i=0; i<nid; ++i) gt.g[i][k] = line[i] - '0' - twop[k];
     }
   }
 
@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     for(i=0; i<nid; ++i)
       for(j=0; j<=i; ++j){
 	double sum{0}, td[nlc];
-	for(k=0; k<nlc; ++k) td[k] = gt[i][k]*gt[j][k]*topq[k];
+	for(k=0; k<nlc; ++k) td[k] = gt.g[i][k]*gt.g[j][k]*topq[k];
 	for(auto&p:td) sum += p;
 	sum/=nlc;
 	cout.write((char*)&sum, sizeof(double));

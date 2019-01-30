@@ -6,9 +6,9 @@ This contains various G matrix constructors.
 ```bash
 git clone https://github.com/xijiang/gmat
 cd gmat/fnc
-./run.sh prepare                    # for first time usage
-./run.sh vr1g                       # VanRaden method 1
-./run.sh 
+./gmat.sh prepare                    # for first time usage
+./gmat.sh vr1g                       # VanRaden method 1
+./gmat.sh                            # to show all available options
 ```
 
 ## Working format
@@ -60,5 +60,4 @@ current *nid* x *nlc* can easily be bigger than that.
 All the programs were written in the "stupid" way for easier later modification.
 
 ## ToDo:
-  * todo: vcf spliter
-  * todo: parallel with bash code
+  * todo: to address the frame limit issue
