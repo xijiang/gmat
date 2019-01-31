@@ -5,6 +5,7 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+  ios_base::sync_with_stdio(false);
   size_t nid, nlc;              { cin>>nid>>nlc; }
 
   double twop[nlc], topq[nlc];{	// read frequencies
