@@ -5,8 +5,8 @@ using namespace std;
 int main(int argc, char *argv[])
 {
   double maf(stof(argv[1]));
-  if(maf<=0 || maf>.49){
-    cerr<<"Wrong MAF, which should be in (0, .49]\n";
+  if(maf<=0 || maf>=.5){
+    cerr<<"Wrong MAF, which should be in (0, .5)\n";
     return 1;
   }
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
   
   for(auto&p:frq){
     cin>>p;
-    if(p<=min || p>=max){
+    if(p<min || p>max){
       p=0;
       --olc;
     }

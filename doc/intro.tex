@@ -12,5 +12,11 @@ each of them has genotypes on $m$ loci.
 When GBLUP method is used,
 the dimension of G matrix is then $n\times n$.
 Since the elements are stored in double precision of 8 bytes,
-50k ID 
+50k ID
+
+\section{G matrices}
+\subsection{VanRaden method 1}
+Suppose the SNP genotypes are coded as 0 for (AA), 1 for (AB) and 2 for (BB).
+Suppose $p_j$ is the allele frequency observed in the population for locus $j$.
+Then the genotypes are corrected by $2p_j$.
 \end{document}
