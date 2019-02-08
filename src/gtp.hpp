@@ -4,21 +4,23 @@
  * a declarition like gt[nid][nlc] usually leads to a segmentation error
  */
 
-#pragma once
-{
-  class GTP{
-  public:
-    int      nid, nlc;
-    double **g;
+#ifndef __gt_class_
+#define __gt_class_
+
+class GTP{
+public:
+  int      nid, nlc;
+  double **g;
     
-    GTP(int _nid, int _nlc):nid(_nid), nlc(_nlc){
-      g = new double*[nid];
-      for(auto i=0; i<nid; ++i) g[i] = new double[nlc];
-    }
+  GTP(int _nid, int _nlc):nid(_nid), nlc(_nlc){
+    g = new double*[nid];
+    for(auto i=0; i<nid; ++i) g[i] = new double[nlc];
+  }
     
-    ~GTP(){
-      for(auto i=0; i<nid; ++i) delete[] g[i];
-      delete[] g;
-    }
-  };
-}
+  ~GTP(){
+    for(auto i=0; i<nid; ++i) delete[] g[i];
+    delete[] g;
+  }
+};
+
+#endif
