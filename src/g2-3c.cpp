@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 /**
  * This will convert my G matrix into 3 columns
@@ -18,13 +19,13 @@ int main(int argc, char *argv[])
   int nid, nlc;
   cin>>nid>>nlc;
   
-  string ID[nid];
+  vector<string> ID;
   {
     ifstream fin(argv[1]);
-    for(auto i=0; i<nid; ++i) fin>>ID[i];
+    for(string id; fin>>id; ID.push_back(id));
 
     if(static_cast<size_t>(nid)!=ID.size()){
-      cerr<"Dimension not match. \n";
+      cerr<<"Dimension not match. \n";
       return 2;
     }
   }
