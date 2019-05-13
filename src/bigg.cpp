@@ -26,6 +26,7 @@ void worker(VBT&, VDB&, double, int, int, VDB&);
 
 int main(int argc, char *argv[])
 {
+  ios_base::sync_with_stdio(false);
   int NT(thread::hardware_concurrency()-2);
   if(NT<1) NT=1;
   
