@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
   cout<<nid<<'\n';
   for(auto&id:ID) cout<<id<<'\n';
   for(auto&[i, p]:G){
-    for(auto&q:p) cout.write(reinterpret_cast<char*>(&p), sizeof(double));
+    for(auto&q:p) cout.write(reinterpret_cast<char*>(&q), sizeof(double));
     cout<<'\n';
   }
   
