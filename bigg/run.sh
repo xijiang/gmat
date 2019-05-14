@@ -19,4 +19,4 @@ for ((i=1; i<=$nfile; ++i)); do
 	fi
     done
 done
-	
+wait
