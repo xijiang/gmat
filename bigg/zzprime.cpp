@@ -20,6 +20,7 @@ void read_genotype(ifstream&in, vector<double>&Z, vector<string>&ID, const vecto
 
 int main(int argc, char *argv[])
 {				// Read vector of 2p
+  ios_base::sync_with_stdio(false);
   vector<double> twop;
   double         s2pq{0.}, is2pq, alpha{1.}, beta{0.};
   {
