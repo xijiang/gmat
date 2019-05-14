@@ -23,12 +23,11 @@ int main(int argc, char *argv[])
   vector<double> twop;
   double         s2pq{0.}, is2pq, alpha{1.}, beta{0.};
   {
-    for(auto i=0; i<622179; ++i) twop.push_back(.5);
-    s2pq = .5*622179;
-    //ifstream fin("2p.txt");
-    //for(double td; fin>>td; twop.push_back(td)) s2pq+=td*(1-td*.5);
+    ifstream fin("2p.txt");
+    for(double td; fin>>td; twop.push_back(td)) s2pq+=td*(1-td*.5);
   }
   is2pq = 1./s2pq;		// product is faster than divide
+  cout.precision(12);
 
   vector<double> A;
   vector<string> I;
