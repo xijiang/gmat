@@ -13,7 +13,7 @@ for ((i=1; i<=$nfile; ++i)); do
     for ((j=1; j<$i; ++j)); do
 	./zzprime $i.gt $j.gt >$i-$j.G &
 	let thread=thread+1
-	if [ $thread > 9 ]; then
+	if [ $thread -gt 9 ]; then
 	    wait
 	    thread=0
 	fi
