@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
     int n = static_cast<int>(J.size());
     double G[m*n];
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasTrans, m, n, k, alpha, &A[0], k, &B[0], k, beta, G, n);
+    for(auto&x:G) x*=is2pq;
     auto p=G;
     for(auto&i:I) for(auto&j:J) cout<<i<<' '<<j<<' '<<*p++<<'\n';
   }

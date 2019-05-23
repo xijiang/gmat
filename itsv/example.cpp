@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
   for(auto&p:A) b.push_back(inner_product(&p[0], &p[0]+Dim, &t[0], 0.));
 
-  deepest_descent(A, b, x);
+  steepest_descent(A, b, x);
 
   cout<<fixed;
   cout.precision(4);
@@ -64,8 +64,8 @@ void steepest_descent(Mat&A, Vec&b, Vec&x){
   int Dim(static_cast<int>(b.size()));
   const double epsilon(1e-7);
   double q[Dim], r[Dim];
-  for(auto k{0}; k<dim; ++k) r[k] = b[i];
-  double delta(inner_product(r, r+dim, r, 0.));
+  for(auto k{0}; k<Dim; ++k) r[k] = b[k];
+  double delta(inner_product(r, r+Dim, r, 0.));
   
   for(auto i{0}; i<Dim && delta>epsilon; ++i){
     for(auto k{0}; k<Dim; ++k) q[k] = inner_product(&A[i][0], &A[i][0]+Dim, r, 0);
@@ -77,5 +77,7 @@ void steepest_descent(Mat&A, Vec&b, Vec&x){
     else
       for(auto k{0}; k<Dim; ++k) r[k] -= alpha*q[k];
     delta = inner_product(r, r+Dim, r, 0.);
+    cout<<' '<<i<<' '<<delta;
   }
+  cout<<endl;
 }
