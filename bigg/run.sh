@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 g++ -O2 -Wall -std=c++17 -o split split.cpp
 icpc -mkl -std=c++11 -o zzprime zzprime.cpp
+icpc -mkl -std=c++11  -DMKL_ILP64 -o inverse inverse.cpp
 
 # provide your genotype file name at the command line
 cat $1 | ./split
