@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
     double G[m*m];
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasTrans, m, m, k, alpha, &A[0], k, &A[0], k, beta, G, m);
     for(auto&x:G) x*=is2pq;
-    for(int i=0; i<m; ++i)
-      for(int j=0; j<=i; ++j) cout<<I[i]<<' '<<I[j]<<' '<<G[i*m+j]<<'\n';
+    cout.write(reinterpret_cast<char*>(G), sizeof(double)*m*m);
+    //for(int i=0; i<m; ++i) for(int j=0; j<=i; ++j) cout<<I[i]<<' '<<I[j]<<' '<<G[i*m+j]<<'\n';
   }else if(argc==3){
     vector<double> B;
     vector<string> J;
@@ -52,8 +52,9 @@ int main(int argc, char *argv[])
     double G[m*n];
     cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasTrans, m, n, k, alpha, &A[0], k, &B[0], k, beta, G, n);
     for(auto&x:G) x*=is2pq;
-    auto p=G;
-    for(auto&i:I) for(auto&j:J) cout<<i<<' '<<j<<' '<<*p++<<'\n';
+    cout.write(reinterpret_cast<char*>(G), sizeof(double)*m*n);
+    //auto p=G;
+    //for(auto&i:I) for(auto&j:J) cout<<i<<' '<<j<<' '<<*p++<<'\n';
   }
   
   return 0;
