@@ -31,8 +31,16 @@ int main(int argc, char *argv[])
   for(MKL_INT i=0; i<dim; ++i) G[i*dim+i]+=diag;
   
   info = LAPACKE_dpotrf(LAPACK_ROW_MAJOR, 'L', dim, &G[0], dim);
+  if(info){
+    cerr<<"Decomposition error: "<<info<<endl;
+    return 1;
+  }
   info = LAPACKE_dpotri(LAPACK_ROW_MAJOR, 'L', dim, &G[0], dim);
 
-  cout.write(reinterpret_cast<char*>(&G[0]), sz);
+  if(!info) cout.write(reinterpret_cast<char*>(&G[0]), sz);
+  else{
+    cerr<<"ERROR: "<<info<<" !!!"<<endl;
+    return 2;
+  }
   return 0;
 }

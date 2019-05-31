@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
   int       NL{1'000};
   if(argc==2) NL = stoi(argv[1]);
   double    frq[MLC]{0};
-  ofstream  foo;
+  ofstream  foo, fid("id.txt");
   int       nid{0}, fn{1}, nlc{0};
 
   for(string line; getline(cin, line); ++nid){
@@ -23,6 +23,7 @@ int main(int argc, char *argv[])
     string id;
     foo<<line<<'\n';
     ss>>id;
+    fid<<id<<'\n';
     
     nlc = 0;
     for(double td; ss>>td; frq[nlc++]+=td);
