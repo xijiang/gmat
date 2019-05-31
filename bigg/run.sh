@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-g++   -O2 -Wall -std=c++17             -o split    split.cpp
-icpc -mkl -Wall -std=c++11             -o zzprime  zzprime.cpp
-g++   -O2 -Wall -std=c++17             -o mrgblk   mrgblk.cpp 
-icpc -mkl -Wall -std=c++11 -DMKL_ILP64 -o inverseG inverseG.cpp 
+g++                 -O2 -Wall -std=c++17 -o split    split.cpp
+icpc               -mkl -Wall -std=c++11 -o zzprime  zzprime.cpp
+g++  -mcmodel=large -O2 -Wall -std=c++17 -o mrgblk   mrgblk.cpp 
+icpc -DMKL_ILP64 -mkl -Wall -std=c++11 -o inverseG inverseG.cpp 
 
 # provide your genotype file name at the command line
 cat $1 | ./split

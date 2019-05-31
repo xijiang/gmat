@@ -1,9 +1,15 @@
 // icpc -std=c++11 -mkl -DMKL_ILP64 inverseG.cpp -o inverseG
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <mkl.h>
 
 using namespace std;
+
+void trick_init_G(vector<double>&G, long nid){
+  vector<double> t(nid, 0);
+  for(long i{0}; i<nid; ++i) G.insert(G.end(), t.begin(), t.end());
+}
 
 int main(int argc, char *argv[])
 {
@@ -18,13 +24,15 @@ int main(int argc, char *argv[])
   MKL_INT dim(sqrt(len)), info;
   cin.seekg(0, cin.beg);
   
-  double G[len];
-  cin.read(reinterpret_cast<char*>(G), sz);
+  vector<double> G;
+  trick_init_G(G, dim);
+  
+  cin.read(reinterpret_cast<char*>(&G[0]), sz);
   for(MKL_INT i=0; i<dim; ++i) G[i*dim+i]+=diag;
   
-  info = LAPACKE_dpotrf (LAPACK_ROW_MAJOR, 'L', dim, G, dim);
-  info = LAPACKE_dpotri (LAPACK_ROW_MAJOR, 'L', dim, G, dim);
+  info = LAPACKE_dpotrf(LAPACK_ROW_MAJOR, 'L', dim, &G[0], dim);
+  info = LAPACKE_dpotri(LAPACK_ROW_MAJOR, 'L', dim, &G[0], dim);
 
-  cout.write(reinterpret_cast<char*>(G), sz);
+  cout.write(reinterpret_cast<char*>(&G[0]), sz);
   return 0;
 }
