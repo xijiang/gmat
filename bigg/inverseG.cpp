@@ -14,7 +14,7 @@ void trick_init_G(vector<double>&G, long nid){
 int main(int argc, char *argv[])
 {
   ios_base::sync_with_stdio(false);
-  double diag{10};
+  double diag{0.};
   if(argc==2) diag = stof(argv[1]);
 
   // Read G which is in binary storage

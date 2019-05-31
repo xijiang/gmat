@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
-g++                 -O2 -Wall -std=c++17 -o split    split.cpp
-icpc               -mkl -Wall -std=c++11 -o zzprime  zzprime.cpp
-g++  -mcmodel=large -O2 -Wall -std=c++17 -o mrgblk   mrgblk.cpp 
-icpc -DMKL_ILP64 -mkl -Wall -std=c++11 -o inverseG inverseG.cpp 
+g++                 -O2 -Wall -std=c++17 -o    split    split.cpp
+icpc               -mkl -Wall -std=c++11 -o  zzprime  zzprime.cpp
+g++                 -O2 -Wall -std=c++17 -o   mrgblk   mrgblk.cpp
+icpc -DMKL_ILP64 -mkl   -Wall -std=c++11 -o inverseG inverseG.cpp 
+#g++  -mcmodel=large -O2 -Wall -std=c++17 -o mrgblk   mrgblk.cpp
+
+nid=63721
+nln=1000
+diag=10.
 
 # provide your genotype file name at the command line
-cat $1 | ./split
+cat $1 | ./split $nln
 
 nfile=`ls *.gt | wc -l`
 thread=1
@@ -23,5 +28,5 @@ for ((i=1; i<=$nfile; ++i)); do
 done
 wait
 
-time ./mrgblk 63721 1000 |
-    ./inverseG 100 >G.inv
+time ./mrgblk $nid $nln |
+    ./inverseG $diag     >G.inv
