@@ -6,7 +6,7 @@ it might take months to finish.
 
 Here I:
 1. divide genotypes into several ID groups.
-2. calculate the G blocks one by one.
+2. calculate the G blocks one by one with MKL lapack functions.
 3. merge the blocks into one big G matrix
 4. calculate G inverse
 

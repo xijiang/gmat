@@ -40,7 +40,9 @@ sample-qtl-n-generate-TBV(){
 
 merge-n-clean(){
     ./combine obsv.ped sim.gt sim.tbv >sim.ped
-    cat obsv.ped | ./amat f id.lst >sim.ibv
+    cat obsv.ped |
+	./amat f id.lst |
+	gawk '{print $2}' >sim.ibv
     rm *.chr sample.ped obsv.ped sim.gt sim.tbv id.lst
     make clean
 }

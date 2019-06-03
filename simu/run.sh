@@ -13,7 +13,7 @@ echo -e "\tqtl.effects: QTL info"
 echo -e "\tsim.ibv: inbreeding values of everybody"
 
 # general parameters
-nchr=10				# number of chromosomes
+nchr=5				# number of chromosomes
 ne=120				# effective population size
 ng=10000			# number of generations
 chr=1				# chromosome length in Morgen
@@ -36,3 +36,5 @@ echo sampled QTL and TBV
 
 # prepare the files for future utilization
 merge-n-clean
+tar jcvf sim.tar.bz2 sim.ped qtl.effects sim.ibv
+rm sim.ped qtl.effects sim.ibv
