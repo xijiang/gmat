@@ -51,6 +51,12 @@ This is realized in two stages:
 A function, *splitg*, is added to split jobs.
 Also see the bash scripts to see how to use them.
 
+## bigg
+This is to calculate a very big dataset, e.g., when you have SNP loci of order 1M, and ID of order 50k.
+Ordinary GEMM can take months to obtain a G matrix for GBLUP.
+This set of codes can finish it in less than 2 days.
+Inversion of G of 50k dimension takes no more than hours.
+
 ## Note:
 
 In the driver, *nid* and *nlc* must be defined as size_t or long.
