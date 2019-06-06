@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
   string gt;			// read ideal genotypes below
 
   cin>>ne>>nlc;
-  for(auto i{0}; i<ne*2; ++i){
+  for(auto i{0}; i<ne*2; ++i){ // ignore the frequency part
     string hap;			// to keep variables as few as possible
     cin>>hap;			// and I ignore the base pair positions here
     gt +=hap;
