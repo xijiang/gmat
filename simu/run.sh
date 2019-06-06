@@ -13,7 +13,7 @@ echo -e "\tqtl.effects: QTL info"
 echo -e "\tsim.ibv: inbreeding values of everybody"
 
 # general parameters
-nchr=3				# number of chromosomes
+nchr=5				# number of chromosomes
 ne=120				# effective population size
 ng=10000			# number of generations
 chr=1				# chromosome length in Morgen
@@ -24,10 +24,11 @@ echo Simulated an ideal population
 
 nsib=10
 ngrt=10
+nged=2400			# number of genotyped ID
 ./simPed $ne $nsib $ngrt >sample.ped
 cat sample.ped | ./obvped $ne >obsv.ped
 
-time drop-ideal-to-sorted-pedigree $nchr $chr
+time drop-ideal-to-sorted-pedigree $nchr $chr $nged
 echo  dropped the ideal genotypes into the sorted pedigree
 
 nqtl=800

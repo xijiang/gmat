@@ -14,6 +14,7 @@ simulate-an-ideal-population(){
 drop-ideal-to-sorted-pedigree(){
     nchr=$1
     len=$2
+    nged=$3
     
     files=""
 
@@ -25,7 +26,14 @@ drop-ideal-to-sorted-pedigree(){
 
     # below also clean fixed loci
     ./merge $files |
-	./allele2g >sim.gt
+	./allele2g >raw.gt
+
+    # presume the last $nged ID were genotyped, or can be observed
+    tail -n $nged raw.gt |
+	./if-fixed > fixed.txt
+
+    cat raw.gt |
+	./rm-fixed fixed.txt >sim.gt
 }
 
 sample-qtl-n-generate-TBV(){
