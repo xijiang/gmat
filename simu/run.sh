@@ -31,11 +31,11 @@ cat sample.ped | ./obvped $ne >obsv.ped
 time drop-ideal-to-sorted-pedigree $nchr $chr $nged
 echo  dropped the ideal genotypes into the sorted pedigree
 
-nqtl=800
+nqtl=1000
 time sample-qtl-n-generate-TBV $nqtl
 echo sampled QTL and TBV
 
 # prepare the files for future utilization
 merge-n-clean
 tar jcvf sim.tar.bz2 sim.ped qtl.effects sim.ibv
-rm sim.ped qtl.effects sim.ibv
+rm sim.ped qtl.effects sim.ibv raw.gt
