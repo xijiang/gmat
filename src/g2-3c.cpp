@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 
   cin.ignore();
   double td;
+  cout.precision(12);
   for(auto i=0; i<nid; ++i)
     for(auto j=0; j<=i; ++j){
       cin.read((char*)&td, sizeof(double));
